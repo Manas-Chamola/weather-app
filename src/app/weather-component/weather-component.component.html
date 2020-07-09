@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card-columns custom-columns">
+    <div class="card h-100" *ngFor="let cityWeather of weather; let i = index">
+      <img
+        src="{{ cityWeather?.img }}"
+        class="card-img-top"
+        style="max-height: 150px;"
+        alt="..."
+      />
+      <div class="card-body" style="max-height: 350px;">
+        <h5 class="card-title">{{ cityWeather?.name }}</h5>
+        <p class="card-text">Weather: {{ (cityWeather?.weather)[0].main }}</p>
+        <p class="card-text">
+          Description:
+          {{ (cityWeather?.weather)[0].description }}
+        </p>
+        <p class="card-text">
+          Avg. Temperature(C): {{ cityWeather?.main.temp }}
+        </p>
+        <p class="card-text">
+          Min. Temperature(C): {{ cityWeather?.main.temp_min }}
+        </p>
+        <p class="card-text">
+          Max. Temperature(C): {{ cityWeather?.main.temp_min }}
+        </p>
+
+        <label>Search for a City:</label>
+        <input
+          id="{{ i }}"
+          (keyup.enter)="fetchWeatherData($event)"
+          type="text"
+          class="form-control"
+        />
+        <p>{{ cityWeather?.error }}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 30 seconds ago</small>
+      </div>
+    </div>
+  </div>
+</div>
